@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Alice",
+  "version": "0.0.1",
+
+  "default_locale": "en",
+  "description": "Reddit options on any page",
+  "icons": {},
+
+  "content_scripts": {
+    "mathches": ["*"],
+    "css": ["styles.css"],
+    "js": ["jquery.js", "action.js"]
+  }
+
+  "background": {
+    "persistent": true,
+    "scripts": ["background.js"]
+  },
+  "background_page": ...,
+  "permissions": ["tabs"],
+}
