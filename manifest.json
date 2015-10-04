@@ -11,12 +11,11 @@
     "mathches": ["*"],
     "css": ["styles.css"],
     "js": ["jquery.js", "action.js"]
-  }
+  },
 
   "background": {
     "persistent": true,
     "scripts": ["background.js"]
   },
-  "background_page": ...,
   "permissions": ["tabs"],
 }
