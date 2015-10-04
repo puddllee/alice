@@ -8,7 +8,7 @@
   "content_scripts": [{
     "matches": ["*://*/*"],
     "css": ["styles.css"],
-    "js": ["jquery-2.1.4.min.js", "content.js"]
+    "js": ["jquery-2.1.4.min.js", "content.js", "ui.js", "api.js"]
   }],
   "permissions": [
     "tabs",

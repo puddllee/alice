@@ -1,1 +1,6 @@
-console.log('THIS IS A TEST\n\n\n\n');
+// JQuery ready
+$(function () {
+  startUI();
+
+  findWherePosted(document.URL);
+});
