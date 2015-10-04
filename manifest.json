@@ -3,19 +3,15 @@
   "name": "Alice",
   "version": "0.0.1",
 
-  "default_locale": "en",
   "description": "Reddit options on any page",
   "icons": {},
-
-  "content_scripts": {
-    "mathches": ["*"],
+  "content_scripts": [{
+    "matches": ["*://*/*"],
     "css": ["styles.css"],
-    "js": ["jquery.js", "action.js"]
-  },
-
-  "background": {
-    "persistent": true,
-    "scripts": ["background.js"]
-  },
-  "permissions": ["tabs"],
+    "js": ["jquery-2.1.4.min.js", "content.js"]
+  }],
+  "permissions": [
+    "tabs",
+    "https://www.reddit.com/"
+  ]
 }
