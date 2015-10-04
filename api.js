@@ -8,27 +8,27 @@ findWherePosted = function (url) {
     if (xhr.readyState == 4) {
       var resp = JSON.parse(xhr.responseText);
       console.log(resp);
-      formatResponse(resp);
+      var jsonResponse = formatResponse(resp);
     }
   }
   xhr.send();
+  return jsonResponse
 }
 
 var formatResponse = function (resp) {
   var postList = []
-  var jsonResponse = '{'
   if (resp.kind == "Listing") {
-    jsonResponse += '['
     var i = 0
-      // create post objects for each post
+
+    // create post objects for each post
     for (object in resp.data.children) {
       var post = {
-        subreddit: resp.data.children[i],
-        author: resp.data.children[i],
-        score: resp.data.children[i],
-        nsfw: resp.data.children[i],
-        permalink: resp.data.children[i],
-        title: resp.data.children[i]
+        subreddit: resp.data.children[i].data.subreddit,
+        author: resp.data.children[i].data.author,
+        score: resp.data.children[i].data.score,
+        nsfw: resp.data.children[i].data.over_18,
+        permalink: resp.data.children[i].data.permalink,
+        title: resp.data.children[i].data.title
       }
       postList.push(post)
       i++;
@@ -36,6 +36,11 @@ var formatResponse = function (resp) {
   } else {
     console.log("response kind was: " + resp.kind);
   }
-  console.log(postList)
 
+  // Sort postList by score
+  postList.sort(function (a, b) {
+    return a.score - b.score;
+  });
+  var jsonResponse = JSON.stringify(postList)
+  return jsonResponse
 }
