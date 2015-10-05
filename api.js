@@ -1,21 +1,24 @@
-findWherePosted = function (url) {
-  var jsonResponse = {}
+findWherePosted = function (url, callback) {
+  var jsonResponse = {};
   console.log('find where posted ' + url);
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "https://www.reddit.com/submit/.json?url=" + url, true);
   xhr.onreadystatechange = function () {
-    console.log("state change")
     if (xhr.readyState == 4) {
       var resp = JSON.parse(xhr.responseText);
       jsonResponse = formatSubredditResponse(resp);
+
+      callback(jsonResponse);
     }
   }
   xhr.send();
-  return jsonResponse
 }
 
 var formatSubredditResponse = function (resp) {
   var postList = []
+  if (!resp || !resp.kind) {
+    return postList;
+  }
   if (resp.kind == "Listing") {
     var i = 0
 
@@ -38,16 +41,15 @@ var formatSubredditResponse = function (resp) {
 
   // Sort postList by score
   postList.sort(function (a, b) {
-    return a.score - b.score;
+    return b.score - a.score;
   });
-  var jsonResponse = JSON.stringify(postList)
-  return jsonResponse
+  return postList;
 }
 
 getComments = function (permalink) {
-  console.log('getting comments for ' + permalink)
+  console.log('getting comments for ' + permalink);
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://www.reddit.com" + permalink + '/.json', true)
+  xhr.open("GET", "https://www.reddit.com" + permalink + '/.json', true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
       var resp = JSON.parse(xhr.responseText);
@@ -55,9 +57,9 @@ getComments = function (permalink) {
     }
   }
   xhr.send();
-  response = JSON..stringify(commentReponse)
-  console.log(response)
-  return response
+  response = JSON.stringify(commentReponse);
+  console.log(response);
+  return response;
 }
 
 var formatCommentResponse = function (parentComment) {
