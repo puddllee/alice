@@ -40,12 +40,10 @@ var makeCommentDiv = function (places) {
   $.get(chrome.extension.getURL('public/comment-box.html'), function (data) {
     var template = Handlebars.compile(data);
     var params = {
-      title: 'test',
       places: places
     };
     console.log(places);
     var html = template(params);
-    console.log(html);
     var box = Boundary.createBox('comment-box').html(html);
     Boundary.loadBoxCSS('#comment-box', chrome.extension.getURL('public/pure.min.css'));
     Boundary.loadBoxCSS('#comment-box', chrome.extension.getURL('public/comments.css'));
