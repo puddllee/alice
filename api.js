@@ -9,9 +9,9 @@ findWherePosted = function (url) {
       var resp = JSON.parse(xhr.responseText);
       jsonResponse = formatSubredditResponse(resp);
     }
+    return jsonResponse;
   }
   xhr.send();
-  return jsonResponse
 }
 
 var formatSubredditResponse = function (resp) {
@@ -45,29 +45,31 @@ var formatSubredditResponse = function (resp) {
 }
 
 getComments = function (permalink) {
+  var commentReponse = ''
   console.log('getting comments for ' + permalink)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "https://www.reddit.com" + permalink + '/.json', true)
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
       var resp = JSON.parse(xhr.responseText);
-      var commentReponse = formatCommentResponse(resp[1].data.children); // First element is title
+      commentReponse = formatCommentResponse(resp[1].data.children); // First element is title
     }
   }
   xhr.send();
-  response = JSON..stringify(commentReponse)
+  response = JSON.stringify(commentReponse)
   console.log(response)
   return response
 }
 
 var formatCommentResponse = function (parentComment) {
+  console.log("new level")
   if (parentComment == "") {
     console.log('no replies')
     return "";
   }
   var commentSiblings = [];
 
-  for (var i = 0; i < rawComments.length; i++) {
+  for (var i = 0; i < parentComment.length; i++) {
     var currentComment = parentComment[i].data;
     comment = {
       gilded: currentComment.gilded,
@@ -79,5 +81,6 @@ var formatCommentResponse = function (parentComment) {
     }
     commentSiblings.push(comment)
   }
+  console.log(commentSiblings)
   return commentSiblings
 }
