@@ -2,5 +2,7 @@
 $(function () {
   startUI();
 
-  findWherePosted(document.URL);
+  findWherePosted(document.URL, function(data) {
+    console.log(data);
+  });
 });
