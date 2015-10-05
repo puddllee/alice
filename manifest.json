@@ -6,12 +6,27 @@
   "description": "Reddit options on any page",
   "icons": {},
   "content_scripts": [{
-    "matches": ["*://*/*"],
-    "css": ["styles.css"],
-    "js": ["jquery-2.1.4.min.js", "content.js", "ui.js", "api.js"]
+    "matches": ["http://*/*", "https://*/*"],
+    "css": [
+      "boundary/boundary.css",
+      "styles.css"
+    ],
+    "js": [
+      "boundary/jquery.js",
+      "boundary/boundary.js",
+      "content.js",
+      "ui.js",
+      "api.js"
+    ],
+    "all_frames": false
   }],
   "permissions": [
     "tabs",
     "https://www.reddit.com/"
+  ],
+  "web_accessible_resources": [
+    "boundary/boundary-extra.css",
+    "public/*",
+    "font/*"
   ]
 }

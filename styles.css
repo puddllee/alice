@@ -1,0 +1,12 @@
+#comment-box {
+  font-family: Roboto;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 40vw;
+  height:40vh;
+  margin-right: 1em;
+  margin-bottom: 3em;
+  z-index: 1000;
+}
