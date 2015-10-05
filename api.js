@@ -31,7 +31,9 @@ var formatSubredditResponse = function (resp) {
         score: resp.data.children[i].data.score,
         nsfw: resp.data.children[i].data.over_18,
         permalink: resp.data.children[i].data.permalink,
-        title: resp.data.children[i].data.title
+        title: resp.data.children[i].data.title,
+        id: resp.data.children[i].data.id
+
       }
       postList.push(post)
       i++;
@@ -48,7 +50,7 @@ var formatSubredditResponse = function (resp) {
 }
 
 getComments = function (permalink) {
-  var commentReponse = ''
+  var commentResponse = ''
   console.log('getting comments for ' + permalink)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "https://www.reddit.com" + permalink + '/.json', true);
@@ -59,18 +61,18 @@ getComments = function (permalink) {
     }
   }
   xhr.send();
-  response = JSON.stringify(commentReponse)
-  console.log(response)
-  return response
+  console.log(commentResponse)
+  return commentResponse
 }
 
 var formatCommentResponse = function (parentComment) {
+  var commentSiblings = [];
+
   console.log("new level")
   if (parentComment == "") {
     console.log('no replies')
-    return "";
+    return commentSiblings;
   }
-  var commentSiblings = [];
 
   for (var i = 0; i < parentComment.length; i++) {
     var currentComment = parentComment[i].data;
