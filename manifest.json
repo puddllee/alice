@@ -14,6 +14,7 @@
     "js": [
       "boundary/jquery.js",
       "boundary/boundary.js",
+      "public/handlebars-v4.0.2.js",
       "content.js",
       "ui.js",
       "api.js"

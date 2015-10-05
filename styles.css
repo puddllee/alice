@@ -7,6 +7,21 @@
   width: 40vw;
   height:40vh;
   margin-right: 1em;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
   z-index: 1000;
+}
+
+#loading-box {
+  font-family: Roboto;
+
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  height: 100px;
+  z-index: 1000;
+
+  background-color: white;
+  -webkit-box-shadow: 6px 4px 21px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 6px 4px 21px 0px rgba(0,0,0,0.3);
+  box-shadow: 6px 4px 21px 0px rgba(0,0,0,0.3);
 }

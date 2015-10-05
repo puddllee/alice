@@ -2,7 +2,7 @@
 $(function () {
   startUI();
 
-  findWherePosted(document.URL, function(data) {
-    console.log(data);
+  findWherePosted(document.URL, function (data) {
+    loadPlacesLinked(data);
   });
 });
